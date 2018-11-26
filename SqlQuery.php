@@ -1,5 +1,5 @@
 <?php
-       //include the connection to the database file
+       //include the connection to the database files
        include 'dbConnect.php';
         ?>
         <?php
