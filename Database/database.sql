@@ -8,17 +8,12 @@
  * Created: Nov 26, 2018
  */
 
-CREATE DATABASE IF NOT EXISTS `newtest`;
-USE `newtest`;
+CREATE DATABASE company;
+CREATE TABLE login(
+id int(10) NOT NULL AUTO_INCREMENT,
+username varchar(255) NOT NULL,
+password varchar(255) NOT NULL,
+PRIMARY KEY (id)
+)
 
--- Dumping structure for table newtest.testinput
-CREATE TABLE IF NOT EXISTS `testinput` (
-  `input` varchar(200) DEFAULT NULL,
-  `image` varchar(2000) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table newtest.testinput: 2 rows
-/*!40000 ALTER TABLE `testinput` DISABLE KEYS */;
-INSERT INTO `testinput` (`input`, `image`) VALUES
-	(NULL, '.\\Images/betting-exchnage.png'),
-	('This is the row from row number 1 test', NULL);
