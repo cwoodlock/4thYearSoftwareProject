@@ -33,5 +33,5 @@ $error = ''; // Variable To Store Error Message
 			} 
 			mysqli_close($conn); // Closing Connection 
 			} 
-		}
+	}
 ?>
