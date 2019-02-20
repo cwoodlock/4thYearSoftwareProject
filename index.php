@@ -1,28 +1,51 @@
-<?php
-include('login.php'); // Includes Login Script
-if(isset($_SESSION['login_user'])){
-header("location: profile.php"); // Redirecting To Profile Page
-}
-?> 
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/scripts.js"></script>
+</head>
+<body>
 
-<html>
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Betting Exchange</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  
+<div class="container">
 
-  <head>
-    <title>Login Form in PHP with Session</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
-  </head>
 
-  <body>
-    <div id="login">
-      <h2>Login Form</h2>
-      <form action="" method="post">
-         <label>UserName :</label>
-         <input id="name" name="username" placeholder="username" type="text">
-         <label>Password :</label>
-         <input id="password" name="password" placeholder="**********" type="password"><br><br>
-         <input name="submit" type="submit" value=" Login ">
-      </form>
-    </div>
-  </body>
+  <div class="jumbotron">
+    <h1 class="text-center"> Home Page</h1>
+  </div>
+
+
+  
+</div> <!--Container-->
+
+
+
+
+  
+</body>
 </html>
