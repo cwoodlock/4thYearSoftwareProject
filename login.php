@@ -1,37 +1,72 @@
-<?php
-session_start(); // Starting Session 
-$error = ''; // Variable To Store Error Message
+<?php include("includes/header.php") ?>
 
-	if (isset($_POST['submit'])) { 
-		if (empty($_POST['username']) || empty($_POST['password'])) { 
-			$error = "Username or Password is invalid"; 
-		} 
-		else{ 
-			// Define $username and $password 
-			$username = $_POST['username']; 
-			$password = $_POST['password']; 
+  <?php include("includes/nav.php") ?>
 
-			// mysqli_connect() function opens a new connection to the MySQL server. 
-			$conn = mysqli_connect("localhost", "root", "", "company"); 
+	
 
-			// SQL query to fetch information of registerd users and finds user match. 
-			$query = "SELECT username, password from login where username=? AND password=? LIMIT 1"; 
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3">
 
-			// To protect MySQL injection for Security purpose 
-			$stmt = $conn->prepare($query); 
-			$stmt->bind_param("ss", $username, $password); 
-			$stmt->execute(); 
-			$stmt->bind_result($username, $password); 
-			$stmt->store_result(); 
+	
+								
+		</div>
+	</div>
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="login.php" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="register.php" id="">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form"  method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" required>
+									</div>
 
-			if($stmt->fetch()) {//fetching the contents of the row  
-				$_SESSION['login_user'] = $username; // Initializing Session 
-				header("location: profile.php"); // Redirecting To Profile Page 
-			} 
-			else { 
-				$error = "Username or Password is invalid"; 
-			} 
-			mysqli_close($conn); // Closing Connection 
-			} 
-	}
-?>
+									<div class="form-group">
+										<input type="password" name="password" id="login-
+										password" tabindex="2" class="form-control" placeholder="Password" required>
+									</div>
+
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="recover.php" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+<?php include("includes/footer.php") ?>
