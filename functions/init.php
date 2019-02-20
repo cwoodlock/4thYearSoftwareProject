@@ -1,11 +1,12 @@
-<?php 
+<?php ob_start(); //output buffer used for re-direction
+
+	session_start(); //start session
 
 
-include("db.php");
-include("functions.php");
+	include("db.php");
 
-if($conn){
-	echo "It is connected";
-}
+	include("functions.php");
+
+
 
 ?>
