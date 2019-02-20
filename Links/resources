@@ -1,0 +1,4 @@
+1. Had an issue with including a php page https://stackoverflow.com/questions/40467704/parse-error-syntax-error-unexpected-include-t-include-in-d-learnphp-drupa
+
+2. Wanted to create tokens that the user couldnt guess and were unique https://stackoverflow.com/questions/2593807/md5uniqid-makes-sense-for-random-unique-tokens
+http://phpgoogle.blogspot.com/2007/08/four-ways-to-generate-unique-id-by-php.html

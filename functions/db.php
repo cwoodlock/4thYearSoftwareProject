@@ -35,4 +35,10 @@ function fetch_array($result){ //retrieve the data
 
 }
 
+function row_count($result){ //Count the rows in the database
+
+	return mysqli_num_rows($result);
+
+}
+
 ?>
