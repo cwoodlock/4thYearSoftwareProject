@@ -4,6 +4,8 @@
 include("db.php");
 include("functions.php");
 
-echo"It works"
+if($conn){
+	echo "It is connected";
+}
 
 ?>
