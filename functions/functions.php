@@ -151,7 +151,11 @@ function validate_user_registration(){ //Function will validate the user
 		} else {
 
 			if(register_user($first_name, $last_name, $username, $email, $password)){
-				echo "User Registered";
+
+				set_message("<p class='bg-success text-centre'> Please check your email or spam folder for activation link.</p>");
+
+				//redirect to home page
+				redirect("index.php");
 			}
 		}
 
@@ -184,8 +188,23 @@ function register_user($first_name, $last_name, $username, $email, $password){
 		$result = query($sql);
 		confirm($result);
 
+		$subject = "Activate Account";
+		$message = "Please click the link below to activate your account;
+
+		http://localhost/4thYearSoftwareProject/activate.phpemail=$email$code=$validation_code";
+
+		$header = "From: noreply@betex.com";
+
+		send_email($email, $subject, $message, $header);
+
 		return true;
 	}
+
+}
+
+function send_email($email, $subject, $message, $header){
+
+	return mail($email, $subject, $message, $header);
 
 }
 
