@@ -5,4 +5,6 @@ http://phpgoogle.blogspot.com/2007/08/four-ways-to-generate-unique-id-by-php.htm
 
 3. Alert box for errors https://getbootstrap.com/docs/4.3/components/alerts/
 
-4. 
+4. Decrypt with md5, used the hashtable one but adapted it for the db https://stackoverflow.com/questions/15194663/encrypt-and-decrypt-md5
+
+5. Set the cookie in the browser to expire after a certain amount of time https://www.w3schools.com/php/func_http_setcookie.asp

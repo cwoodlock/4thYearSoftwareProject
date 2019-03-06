@@ -262,6 +262,7 @@ function validate_user_login(){ //Function will validate the user when loging in
 
 		$email = clean($_POST['email']);
 		$password = clean($_POST['password']);
+		$remember = isset($_POST['password']); //Checks for the remember me check box
 
 		if(empty($email)) {
 			$errors[] = "Email field cannot be empty";
@@ -280,7 +281,7 @@ function validate_user_login(){ //Function will validate the user when loging in
 				echo validation_error($error);			
 			} 
 		} else {
-			if(login_user($email, $password)){
+			if(login_user($email, $password, $remember)){
 				redirect("admin.php");
 			} else {
 				echo validation_error("Your information was not correct");
@@ -290,7 +291,7 @@ function validate_user_login(){ //Function will validate the user when loging in
 	}
 }
 
-function login_user($email, $password){ //Function to log the user in by comparing what they enter to the database
+function login_user($email, $password, $remember){ //Function to log the user in by comparing what they enter to the database
 
 	$sql = "SELECT password, id FROM users WHERE email = '".escape($email)."' AND active = 1";
 
@@ -303,6 +304,11 @@ function login_user($email, $password){ //Function to log the user in by compari
 
 		//de-crypt the hashed password from the database
 		if(md5($password) == $db_password){
+
+			if($remember == "on"){
+				setcookie('email', $email, time() + 86400); //the cookie will expire after 1 day in secs
+			}
+
 			//Save email in the session
 			$_SESSION['email'] = $email;
 
@@ -320,11 +326,15 @@ function login_user($email, $password){ //Function to log the user in by compari
 
 function logged_in(){ //This function will make sure that the user stays logged in when they log in
 
-	if(isset($_SESSION['email'])){
+	if(isset($_SESSION['email']) || isset($_COOKIE['email'])){
 		return true;
 	} else {
 		return false;
 	}
+
+}
+
+function recover_password(){ //his fucntion will recover the password
 
 }
 
