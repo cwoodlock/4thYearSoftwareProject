@@ -7,7 +7,7 @@
 
   <div class="jumbotron">
   <?php 
-    echo display_message();
+    display_message();
   ?>
     <h1 class="text-center"> Home</h1>
   </div>

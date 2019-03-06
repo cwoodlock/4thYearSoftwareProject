@@ -189,9 +189,9 @@ function register_user($first_name, $last_name, $username, $email, $password){
 		confirm($result);
 
 		$subject = "Activate Account";
-		$message = "Please click the link below to activate your account;
+		$message = "Please click the link below to activate your account:
 
-		http://localhost/4thYearSoftwareProject/activate.phpemail=$email$code=$validation_code";
+		http://localhost/4thYearSoftwareProject/activate.php?email=$email&code=$validation_code";
 
 		$header = "From: noreply@betex.com";
 
@@ -206,6 +206,49 @@ function send_email($email, $subject, $message, $header){
 
 	return mail($email, $subject, $message, $header);
 
+}
+
+function activate_user(){
+	//Test URL http://localhost/4thYearSoftwareProject/activate.php?email=jsmith@gmail.com&code=441c10bb769d04ff03ee47c77ce6bd42
+	if($_SERVER['REQUEST_METHOD'] == "GET"){
+
+		if(isset($_GET['email'])) {
+
+			//Get the variables for email and the validation code from the url
+			$email = clean($_GET['email']);
+
+			$validation_code = clean($_GET['code']);
+
+			//SQL statement and confirm the validation
+			$sql = "SELECT id FROM users WHERE email = '".escape($_GET['email'])."' AND validation_code = '".escape($_GET['code'])."' ";
+			$result = query($sql);
+			confirm($result);
+
+			if(row_count($result) == 1) {
+				//Set the user to the active state
+				$sql2 = "UPDATE users SET active = 1, validation_code = 0 WHERE email = '".escape($email)."' AND validation_code = '".escape($validation_code)."' ";	
+				$result2 = query($sql2);
+				confirm($result2);
+
+				//Set the message in session
+				set_message("<p class='bg-success'>Your account has been activated please login</p>");
+
+				//Redirect the user to login
+				redirect("login.php");
+
+
+		} else {
+			
+			set_message("<p class='bg-danger'>Sorry your account could not be activated </p>");
+
+			redirect("login.php");
+
+
+		}
+
+			
+		}
+	}
 }
 
 ?>
