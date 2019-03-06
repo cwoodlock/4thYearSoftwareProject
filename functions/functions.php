@@ -237,18 +237,82 @@ function activate_user(){
 				redirect("login.php");
 
 
-		} else {
-			
-			set_message("<p class='bg-danger'>Sorry your account could not be activated </p>");
+			} else {
+				
+				set_message("<p class='bg-danger'>Sorry your account could not be activated </p>");
 
-			redirect("login.php");
+				redirect("login.php");
 
 
-		}
+			}
 
 			
 		}
 	}
+}
+
+function validate_user_login(){ //Function will validate the user when loging in
+
+	$errors = [];
+
+	$min = 3;
+	$max = 20;
+
+	if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+		$email = clean($_POST['email']);
+		$password = clean($_POST['password']);
+
+		if(empty($email)) {
+			$errors[] = "Email field cannot be empty";
+		}
+
+		if(empty($password)) {
+			$errors[] = "Password field cannot be empty";
+		}
+
+
+		if(!empty($errors)){
+
+			foreach ($errors as $error) {
+
+				//Display validation error
+				echo validation_error($error);			
+			} 
+		} else {
+			if(login_user($email, $password)){
+				redirect("admin.php");
+			} else {
+				echo validation_error("Your information was not correct");
+			}
+		}
+
+	}
+}
+
+function login_user($email, $password){ //Function to log the user in by comparing what they enter to the database
+
+	$sql = "SELECT password, id FROM users WHERE email = '".escape($email)."' AND active = 1";
+
+	$result = query($sql);
+	if(row_count($result) == 1){
+
+		//Get the password from the database
+		$row = fetch_array($result);
+		$db_password = $row['password'];
+
+		//de-crypt the hashed password from the database
+		if(md5($password) == $db_password){
+			return true;
+		} else {
+			return false;
+		}
+
+		return true;
+	} else {
+		return false;
+	}
+
 }
 
 ?>
