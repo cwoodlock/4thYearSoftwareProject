@@ -38,7 +38,7 @@ function token_generator(){
 
 	$token = $_SESSION['token'] = md5(uniqid(mt_rand(), true));
 
-	return token;
+	return $token;
 }
 
 function validation_error($error){
@@ -335,6 +335,16 @@ function logged_in(){ //This function will make sure that the user stays logged 
 }
 
 function recover_password(){ //his fucntion will recover the password
+
+	if($_SERVER['REQUEST_METHOD'] == "POST"){ //post request
+
+		if(isset($_SESSION['token']) && $_POST['token'] == $_SESSION['token']){
+
+			echo "IT WORKS";
+		}
+
+		
+	}
 
 }
 
