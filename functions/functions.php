@@ -303,11 +303,24 @@ function login_user($email, $password){ //Function to log the user in by compari
 
 		//de-crypt the hashed password from the database
 		if(md5($password) == $db_password){
+			//Save email in the session
+			$_SESSION['email'] = $email;
+
 			return true;
 		} else {
 			return false;
 		}
 
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+function logged_in(){ //This function will make sure that the user stays logged in when they log in
+
+	if(isset($_SESSION['email'])){
 		return true;
 	} else {
 		return false;
