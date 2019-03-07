@@ -340,7 +340,21 @@ function recover_password(){ //his fucntion will recover the password
 
 		if(isset($_SESSION['token']) && $_POST['token'] == $_SESSION['token']){
 
-			echo "IT WORKS";
+			$email = clean($_POST['email']);
+
+			if(email_exists($email)){
+
+				$validation_code = md5($email, microtime());
+
+				$subject = "Please reset your password";
+				$message = " Here is your password reset code {$validation_code}
+
+				Click here to reset ypur password http://localhost/4thYearSoftwareProject/code.php?email=$email&code=$validation_code
+				";
+				$header = "From: noreply@betex.com";
+
+				send_email($email, $subject, $message, $headers);
+			}
 		}
 
 		
