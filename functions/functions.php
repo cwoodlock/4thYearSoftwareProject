@@ -344,22 +344,78 @@ function recover_password(){ //his fucntion will recover the password
 
 			if(email_exists($email)){
 
-				$validation_code = md5($email, microtime());
+				$validation_code = md5($email + microtime());
+
+				//Cookie so that webpage isn't available all the time
+				setcookie('temp_access_code', $validation_code, time()+ 60);
+
+				$sql = "UPDATE users SET validation_code = '".escape($validation_code)."' WHERE email = '".escape($email)."' ";
+				$result = query($sql);
+				confirm($result);
 
 				$subject = "Please reset your password";
 				$message = " Here is your password reset code {$validation_code}
 
 				Click here to reset ypur password http://localhost/4thYearSoftwareProject/code.php?email=$email&code=$validation_code
 				";
-				$header = "From: noreply@betex.com";
+				$headers = "From: noreply@betex.com";
 
-				send_email($email, $subject, $message, $headers);
+				if(!send_email($email, $subject, $message, $headers)){
+					
+					echo validation_error("Email could not be sent ");
+
+				}
+
+				set_message("<p class='bg-success'>Please check your email or spam folder for a password reset code</p>");
+				redirect("index.php");
+
+			} else {
+				echo validation_error("This email does not exist");
 			}
 		}
 
 		
+	} else {
+		//If the token isnt set redirect to index
+		
 	}
 
+}
+
+function validation_code(){
+	//Check if cookoe is set for temp access
+	if(isset($_COOKIE['temp_access_code'])){
+		//Validation to makes sure requests are correct
+		if(!isset($_GET['email']) && !isset($_GET['code'])){
+			redirect("index.php");
+		} else if(empty($_GET['email']) || empty($_GET['code'])){
+			redirect("index.php");
+		} else{
+			if(isset($_POST['code'])){
+				$email = clean($_GET['email']);
+
+				$validation_code = clean($_POST['code']);
+
+				$sql = "SELECT id FROM users WHERE validation_code = '".escape($validation_code)."' AND email = '".escape($email)."'";
+					$result = query($sql);
+
+				if(row_count($result) == 1) {
+
+						setcookie('temp_access_code', $validation_code, time()+ 900);
+
+						redirect("reset.php?email=$email&code=$validation_code");
+
+
+				} else {
+					echo validation_error("Sorry wrong validation code");
+				}
+			}
+		}
+
+	} else {
+		set_message("<p class='bg-success'>Sorry your validation cookie was expired</p>");
+		redirect("recover.php");
+	}
 }
 
 ?>
