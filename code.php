@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-lg-offset-3">	
 
+			<?php display_message(); ?>
 			<?php validation_code(); ?>
 
 			<div class="alert alert-success alert-dismissible" role="alert">

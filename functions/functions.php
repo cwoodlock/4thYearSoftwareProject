@@ -23,14 +23,20 @@ function set_message($message){ //set messages while in session
 	}
 }
 
-function display_message(){ //Display message from session
+function display_message(){ //Display message from the session
 
-	if(isset($_SESSION['message'])){
+
+	if(isset($_SESSION['message'])) {
+
 
 		echo $_SESSION['message'];
 
 		unset($_SESSION['message']);
+
 	}
+
+
+
 }
 
  //Added security when using forms, using this to ensure form input is coming from specific user page
@@ -372,17 +378,19 @@ function recover_password(){ //his fucntion will recover the password
 			} else {
 				echo validation_error("This email does not exist");
 			}
+		} else {
+		//If the token isnt set redirect to index
 		}
 
-		
-	} else {
-		//If the token isnt set redirect to index
-		
+ 
+		if(isset($_POST['cancel_submit'])) {
+
+			redirect("login.php");
+		}
 	}
+} 
 
-}
-
-function validation_code(){
+function validation_code(){//Function to use the validation code for recovery
 	//Check if cookoe is set for temp access
 	if(isset($_COOKIE['temp_access_code'])){
 		//Validation to makes sure requests are correct
@@ -413,9 +421,36 @@ function validation_code(){
 		}
 
 	} else {
-		set_message("<p class='bg-success'>Sorry your validation cookie was expired</p>");
+		set_message("<p class='bg-danger'>Sorry your validation cookie was expired</p>");
 		redirect("recover.php");
 	}
+}
+
+function password_reset(){ //Function to reset the password
+
+	if(isset($_COOKIE['temp_access_code'])){
+
+		if(isset($_GET['email']) && isset($_GET['code'])){
+
+			if(isset($_SESSION['token']) && isset($_POST['token']) && $_POST['token'] == $_SESSION['token']){
+
+				if($_POST['password'] === $_POST['confirm_password']){
+
+					$updated_password = md5($_POST['password'] );
+					
+					$sql = "UPDATE users SET password = '".escape($_POST['updated_password']."', validation_code = 0 WHERE email = '".escape($_GET['email'])."' ");
+					query($sql);
+
+					set_message("<p class='bg-success'>Your password has been updated please login</p>");
+					redirect("login.php");
+				}
+			}
+		} 
+
+	} else {
+			set_message("<p class='bg-danger text-centre'>Sorry your cookie has expired</p> ");
+			redirect('recover.php');
+		}
 }
 
 ?>
