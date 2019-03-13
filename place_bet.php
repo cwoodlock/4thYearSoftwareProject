@@ -5,16 +5,16 @@
 	<div class = "panel panel-default" style = "padding: 0px 00px 10px;">
 	   <div class = "panel-heading">
 	      <h3 class = "panel-title">
-	         Team 1 vs Team 2
+	         <?php getTeam1(); ?> vs <?php getTeam2(); ?>
 	      </h3>
 	   </div>
 	   
 	   <div class = "panel-body" >
 	   	<div>
-	      	Team 1
+	      	<?php getTeam1(); ?>
 		      	<p>
 				  	<a class="btn btn-primary" data-toggle="collapse" href="#team1bet" role="button" aria-expanded="false" aria-controls="team1bet">
-				    Team 1 Bet
+				    <?php getOddsTeam1(); ?>
 				  	</a>
 
 				  	<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#team1lay" aria-expanded="false" aria-controls="team1lay">
@@ -26,7 +26,7 @@
 				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 						<p class="lead">
 							Bet Odds:
-						  	<input class="form-control" type="number" id="example-number-input">
+						  	<input class="form-control" type="number" id="example-number-input" value="<?php getOddsTeam1(); ?>">
 						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 						</p>
 					</div>
@@ -50,7 +50,7 @@
 	      	Draw
 		      	<p>
 				  	<a class="btn btn-primary" data-toggle="collapse" href="#drawbet" role="button" aria-expanded="false" aria-controls="drawbet">
-				    Draw Bet
+				    <?php getOddsDraw(); ?>
 				  	</a>
 
 				  	<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#drawlay" aria-expanded="false" aria-controls="drawlay">
@@ -62,7 +62,7 @@
 				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 						<p class="lead">
 							Bet Odds:
-						  	<input class="form-control" type="number" id="example-number-input">
+						  	<input class="form-control" type="number" id="example-number-input" value="<?php getOddsDraw(); ?>">
 						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 						</p>
 					</div>
@@ -83,10 +83,10 @@
 
 
 	    <div>
-	      	Team 2
+	      	<?php getTeam2(); ?>
 		      	<p>
 				  	<a class="btn btn-primary" data-toggle="collapse" href="#team2bet" role="button" aria-expanded="false" aria-controls="team2bet">
-				    Team 2 Bet
+				    <?php getOddsTeam2(); ?>
 				  	</a>
 
 				  	<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#team2lay" aria-expanded="false" aria-controls="team2lay">
@@ -98,7 +98,7 @@
 				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 						<p class="lead">
 							Bet Odds:
-						  	<input class="form-control" type="number" id="example-number-input">
+						  	<input class="form-control" type="number" id="example-number-input" value="<?php getOddsTeam2(); ?>">
 						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 						</p>
 					</div>

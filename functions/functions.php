@@ -453,4 +453,49 @@ function password_reset(){ //Function to reset the password
 		}
 }
 
+function getTeam1(){
+	$sql = "SELECT * FROM contest";
+	$result = query($sql);
+
+	confirm($result);
+	$row = fetch_array($result);
+	echo $row['team1'];
+}
+
+function getTeam2(){
+	$sql = "SELECT * FROM contest";
+	$result = query($sql);
+
+	confirm($result);
+	$row = fetch_array($result);
+	echo $row['team2'];
+}
+
+function getOddsTeam1(){
+	$sql = "SELECT * FROM contest";
+	$result = query($sql);
+
+	confirm($result);
+	$row = fetch_array($result);
+	echo $row['odds_team1'];
+}
+
+function getOddsTeam2(){
+	$sql = "SELECT * FROM contest";
+	$result = query($sql);
+
+	confirm($result);
+	$row = fetch_array($result);
+	echo $row['odds_team2'];
+}
+
+function getOddsDraw(){
+	$sql = "SELECT * FROM contest";
+	$result = query($sql);
+
+	confirm($result);
+	$row = fetch_array($result);
+	echo $row['odds_draw'];
+}
+
 ?>
