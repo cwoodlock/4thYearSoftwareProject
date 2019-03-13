@@ -498,4 +498,13 @@ function getOddsDraw(){
 	echo $row['odds_draw'];
 }
 
+function displayCredit(){
+	$sql = "SELECT * FROM users";
+	$result = query($sql);
+
+	confirm($result);
+	$row = fetch_array($result);
+	echo $row['credit'];
+}
+
 ?>
