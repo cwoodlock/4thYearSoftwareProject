@@ -12,14 +12,4 @@
     <h1 class="text-center"> Home</h1>
   </div>
 
-  	<?php
-	    $sql = "SELECT * FROM contest";
-	    $result = query($sql);
-
-	    confirm($result);
-  		$row = fetch_array($result);
-	    echo $row['team1'];
-	?>
-  
-
 <?php include("includes/footer.php") ?>

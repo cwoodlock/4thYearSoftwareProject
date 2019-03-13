@@ -20,6 +20,7 @@
             <?php if(logged_in()):?>
               <li class="active"><a href="index.php">Home</a></li>
               <li><a href="admin.php">Admin</a></li>
+              <li><a href="credit.php">Top Up</a></li>
               <li><a href="logout.php">Logout</a></li>
 
             <?php endif; ?>
