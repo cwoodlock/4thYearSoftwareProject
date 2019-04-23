@@ -136,9 +136,13 @@ Now that the data was being displayed, during this sprint I allowed the user to 
 The final sprint was to implement a python scraper that would be used to populate the database for the events. This script would be running on the web server and continually updating the data that was being presented to the user.
 
 \chapter{Technology Review}
+In this section, I will cover the overall design and architecture of the application. I will do this through using code snippets to help to understand the design. The technology review chapter will be broken up into three sub sections which will be the data tier, logic tier and presentation tier. An aditional subsection will be used for other technology I used that may not fit into the 3 tier structure.
 
 \section{Data Tier}
+The data tier represents the overall stored data and gives the ability to store, access, update and delete certain data. For my application I have only one database. This database is used to store user information, events and betting/laying information.
+
 \subsection{MySQL}
+I chose MySQL to handle all of my database needs as I have used it before and I think it works very easily with php. There are some issue with using MySQL such as sql-injection but I have made some simple functions to mitigate this in my application. I also 
 
 \section{Logic Tier}
 \subsection{Php}
