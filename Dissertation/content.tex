@@ -1,77 +1,146 @@
 %!TEX root = project.tex
 
-\chapter*{About this project}
+\chapter*{Abstract}
 \paragraph{Abstract}
-A brief description of what the project is, in about two-hundred and fifty words.
+For my final year project, I was looking to create a project that would offer the chance for users to bet and lay on sporting events. A betting exchange is something I have become very interested in recent times and thought that this would be a great opportunity to research the subject and develop my own solution. I wanted to develop this as a web application where a user can create an account, top-up their account, place bets and also lay bets. The bets are populated and set via pulling data from other popular betting companies to get the best price possible. I created this application with a client and server pulling data from the data from the databases. It is a three-tier architecture application using a MySQL data base in the data tier, PHP on the logic tier and HTML and BootStrap for the Presentation tier.
 
 \paragraph{Authors}
-Explain here who the authors are.
+Colm Woodlock
 
 
 
 \chapter{Introduction}
-The introduction should be about three to five pages long.
-Make sure you use references~\cite{einstein}
+When choosing my project, I wanted to pick something that was relevant to what I was interested in and something that I might find useful. This project would also have to highlight my existing skills but also offered some space to learn new skills and research a topic I may not be fully familiar with. With this criteria in mind I started to brain storm ideas on some of the things that I might like to do. 
+
+In the end I settled on a web application called BetEx. BetEx would be a betting exchange. My reason for choosing this is as a few years ago like many other college student was looking for some way to make some extra money on the side with as little effort as possible. That is when I stumbled across a site called OddsMonkey~\cite{oddsMonkey}, on this site they claimed if you followed their guides and tips a user could claim free money that bookmakers were simply giving away. Having seen the offers for "Bet €20 get €20" all over television advertisements, billboards, newspapers and websites, I always thought to myself there must be a way of taking advantage of this but never gave it much more thought. Upon reading their guide I gave it a go and low and behold I had turned my free €20 bet into €15 of take home money with minimal effort. From there I did more research discovering new methods, all the while reaping the benefits of them. This has funded both my education and various holidays. A key component to matched betting is the betting exchange and not many exist on a large scale BetFair, Smarkets and Matchbook being the largest of them~\cite{companies}. This lead me to the idea to develop my own platform to try and understand the workings behind the scenes of a betting exchange. I felt like there was an opportunity to make an exchange that had a much more user friendly interface as I found working with some of the established companies websites to be very confusing at the start.
+Once the project idea was decided on I then had to think about what technologies I wanted to use. I wanted to use many different types of technologies in order to demonstrate my ability but also some that I would have to learn to show my capability to learn new things and incorporate them into an application. In the end I settled on a three tier structure containing a HTML and Boostrap presentation tier, a PHP logic tier which would offer new learning experiences and also for the data tier I would be using a MySQL database.
+From all of this I hoped that I would achieve a product in the end that would meet my expectation of both myself and the expectations worthy of a final year project in a Software Development course.
 
 \chapter{Context}
+The context of my application is to offer a service to users who are new to laying bets. On the site a user can create an account, top-up their account and place a bet/lay from a list of real and regularly updated events.
 \begin{itemize}
-\item Provide a context for your project.
-\item Set out the objectives of the project
-\item Briefly list each chapter / section and provide a 1-2 line description of what each section contains.
-\item List the resource URL (GitHub address) for the project and provide a brief list of the main elements at the URL.
+\item Log-in.
+\item Top-up.
+\item Place bet/lay.
 \end{itemize}
 
 \section{Objectives}
+\subsection{Home Page}
+The objective of the home page is to offer a landing platform for the user. Here they will be presented with the navigation for the website such as access to log in and register pages. A user who is not logged in may not have access to some other features presented on the home page.
+
+\subsection{Register Page}
+The register page offers a form to the user where they can securely create an account for the web application. Once the form is filled out correctly and successfully the user automatically sent out an email for confirmation.
+
+\subsection{Log in Page}
+The log in page allows users who have already registered for the site to access their account. Here they enter their email and their password which is stored as a hashed value. The logic behind the page then compares the password entered to the hashed value that is stored in the database. If the passwords match the user is logged in and they now have access to more features.
+
+\subsection{Activation Page}
+The activation page is used for when the user registering. A code will be automatically generated and emailed to the user to their provided email account and once entered the user will then be fully registered.
+
+\subsection{Forgot Password Page}
+Similar to the Activation page the user will be sent a code that is automatically generated and emailed to their provided email account. Once the user enters this code and it is correct they will then have the opportunity to change their password.
+
+\subsection{Top up Page}
+Provided the user is logged in they will have access to the top-up page. Here the user will be able to enter their details and the top-up amount will be added to their account to be used when betting/ laying on events.
+
+\subsection{User Page}
+The user page will be available once the user is logged in, here it will display information that is personal to that user such as their active bets or their account credits.
+
+\subsection{Available Bets Page}
+On the available bets page the user will be able to see the events that are currently available to bet/lay on. 
+
+\subsection{Bet/Lay Page}
+On this page, once the user has selected an event to bet on they will be given the opportunity to select an amount they wish to place a bet/lay on the event. Once it is placed it will be assigned to their account which they will be able to see on their user page.
 
 \section{Project Links}
+The full project is available here on GitHub:
+https://github.com/cwoodlock/4thYearSoftwareProject
 
 \section{Chapter Review}
+This paper is broken down into various chapters ranging from the planning of the project to the design and implementation of a solution. The following sub-sections will give you a brief overview of each chapter in the paper.
+
 \subsection{Methodology}
+In this chapter I will discuss some of the methodologies I used during the various stages of creating the betting exchange web application. In this section I discuss Agile, version control, testing and sprints.
+
 \subsection{Technology Review}
+In the technology review chapter I review the various technologies that I used in the development of my project. I review everything from the back and front end technologies to development tools and version control.
+
 \subsection{System Design}
+In this chapter I give an explanation of the overall architecture of the betting exchange. I explain why I decided to do certain things and how I implemented those decisions into the project.
 \subsection{System Evaluation}
+In this chapter I evaluate the system in regards to robustness, testing, test results and limitations. 
+
 \subsection{Conclusion}
+Finally in the conclusion I summaries the project against what I set out to do in the goals and objectives. I review the application from the various stages of development and I talk about the possible future developments with the project.
 
 \chapter{Methodology}
-About one to two pages.
-Describe the way you went about your project:
-\begin{itemize}
-\item Agile / incremental and iterative approach to development. Planning, meetings.
-\item What about validation and testing? Junit or some other framework.
-\item If team based, did you use GitHub during the development process.
-\item Selection criteria for algorithms, languages, platforms and technolo-gies.
-\end{itemize}
+\section{Agile Development}
 
+\section{Version Control}
+
+\section{Testing}
+\subsection{White Box Testing}
+\subsection{Black Box Testing}
+
+\section{Testing}
 
 
 
 \chapter{Technology Review}
-About seven to ten pages.
-\begin{itemize}
-\item Describe each of the technologies you used at a conceptual level. Standards, Database Model (e.g. MongoDB, CouchDB), XMl, WSDL, JSON, JAXP.
-\item Use references (IEEE format, e.g. [1]), Books, Papers, URLs (timestamp) – sources should be authoritative. 
-\end{itemize}
+
+\section{Data Tier}
+\subsection{MySQL}
+
+\section{Logic Tier}
+\subsection{Php}
+\subsection{Python}
+
+
+\section{Presentation Tier}
+\subsection{HTML}
+\subsection{Ajax}
+
+\section{Additional Languages}
+\subsection{CSS}
+\subsection{Bootstrap}
+\subsection{JavaScript}
+\subsection{LaTeX}
+
+\section{Technologies Used}
+\subsection{Sublime Text}
+\subsection{GitHub}
+\subsection{Google Cloud Services}
+\subsection{WAMP}
+\subsection{Overleaf}
 
 \chapter{System Design}
-As many pages as needed.
-\begin{itemize}
-\item Architecture, UML etc. An overview of the different components of the system. Diagrams etc… Screen shots etc.
-\end{itemize}
+
+\section{Data Tier}
+\subsection{MySQL}
+
+\section{Logic Tier}
+\subsection{Connection to Data Tiers}
+\subsection{Connecting to Presentation Tier}
+\subsection{Routing and Accessing data}
+
+
+\section{Presentation Tier}
+\subsection{Website Structure}
+\subsection{Pages}
+\subsection{Deployment and Hosting}
 
 \chapter{System Evaluation}
-As many pages as needed.
-\begin{itemize}
-\item Prove that your software is robust. How? Testing etc. 
-\item Use performance benchmarks (space and time) if algorithmic.
-\item Measure the outcomes / outputs of your system / software against the objectives from the Introduction.
-\item Highlight any limitations or opportuni-ties in your approach or technologies used.
-\end{itemize}
+\section{Robustness}
+
+\section{Testing}
+\subsection{Device Testing}
+
+\section{Limitations}
+\subsection{Service Limitations}
+
+\section{Results}
 
 \chapter{Conclusion}
-About three pages.
-
-\begin{itemize}
-\item Briefly summarise your context and ob-jectives (a few lines).
-\item Highlight your findings from the evalua-tion section / chapter and any opportuni-ties identified.
-\end{itemize}
+\section{Future Development}
+\subsection{App Development}
 
