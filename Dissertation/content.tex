@@ -74,17 +74,66 @@ In this chapter I evaluate the system in regards to robustness, testing, test re
 Finally in the conclusion I summaries the project against what I set out to do in the goals and objectives. I review the application from the various stages of development and I talk about the possible future developments with the project.
 
 \chapter{Methodology}
+In this chapter i will discuss the methodologies used in this project. A methodology is just a way to plan and control the development process of a piece of software effectively. There are many different types of methodologies such as extreme programming or waterfall but for this project I tried to used Agile as my main methodology.
+
 \section{Agile Development}
+During the life cycle of this project I attempted to use agile as my main methodology whenever I could. I used this approach during all stages which included the research, design and implementation. In the initial stages of the project I was considering what methodology to use but ultimately decided on using agile as it is what is used by a lot of companies at the moment and I was interested in trying to replicate their approach to developing software.
+
+There are different styles of agile development such as KanBan or extreme programming, but the one I chose for my approach to the project was scrum. Scrum is an agile methodology in which a cycle is carried out in what are known as sprints. 
+
+Throughout the life cycle of the project I held weekly meetings with my project advisor. In these meetings we would discuss what I had done in the previous week and what I was planning to achieve in the following week. Whatever was decided at these meetings, I then created cards on the GitHub project board on the projects page. This helped me focus on the task at hand and I found using this project board to be very useful in the development of this project. Once I started the particular task I would edit the project board and move the card to the in progress column and upon completion of the task move it to the completed section.  
 
 \section{Version Control}
+Throughout the life cycle of the project I used GitHub for the version control. GitHub is a hosting service for version control. What I did was created a repository on GitHub and during the development of the project I would commit whatever progress I had made during that session to GitHub to record my progress. 
+
+Tracking the source code I was committing to GitHub was not the only service I used, I also used the task management tool. This allowed me to create tasks that I wanted to complete and assign them to various sections such as to-do or in progress. 
+
+GitHub also provided an opportunity for me to share my work with my project advisor in weeks I could not attend the project meeting. On the repository you can see when new things are committed and what exactly was updated. Another feature I used with GitHub was the ability to rollback the project if needed. Github Tracked the entire progress of the project and at any time I could revert back to any of the previous commits and this proved very useful.
 
 \section{Testing}
+For my application I needed to decide how I was going to test the application as I could not use something such as J-unit. In the end I decided to go with white and black box testing. We had looked at this method of testing in a previous module and I thought it was fit the purposes  of testing that I needed.
+
 \subsection{White Box Testing}
+In white box testing the tester can see in internal workings of the software. White box testers have a full and comprehensive knowledge of the internal makeup of the software and are usually software developers themselves. This is a role I thought I suited and so I carried out the software tests. What I did was I wrote out some features I would like to test and the expected outcome. For example if I was testing the log-in system, the expected outcome would be that the user is logged in and is presented their user page. I would then test this and follow the path the program follows as it moves down through the code.
+
 \subsection{Black Box Testing}
+Black box testing is a way of testing a piece of software without knowing the internal functionality of the software being tested. A black box tester has no knowledge of the internal design, structure or implementation of the software and are often not software developers. For this I asked some of my friends to test out certain features of the software. The web application was hosted on the Google cloud platform and so I was able to send them a link and ask them to try and perform certain functions. Again I would have made a list of expected outcomes and asked them to recommend any changes if they found any problems themselves. I found this very useful as I often skipped over something small from being so used to looking at it the whole time.
 
-\section{Testing}
+\section{Sprints}
+In this section I will be talking about sprints. Each of the sprints I tried to complete in a timely manner and as effectively as possible. Each sprint represents a vital part of the application.
 
+\subsection{Sprint 1 Research}
+This was my first sprint and I used it to research existing exchanges. I focused on understanding what was user-friendly and how I could potentially improve on existing solutions.
 
+\subsection{Sprint 2 Design}
+During this sprint I focused on the design of the application. Not the aesthetic design but rather the database structure and web application structure.
+
+\subsection{Sprint 3 Database Connection}
+Once the design was complete it was time to start the first of the implementation sprints. For this sprint the objective was to set up a basic three-tier solution. For this I stored some data in a database and using php I presented it on a web page. 
+
+\subsection{Sprint 4 Log-in and Registration}
+Once the basic pipeline was implemented I then decided to work on a log-in system. This log-in system would be pretty comprehensive in regards to the validation checks, cleaning the data before storage in the database and creating a unique session for each user. 
+
+\subsection{Sprint 5 Website Design}
+Once the log in system and registration system was implemented I then decided to work on the general website design. I created a home page where a user could log in from and a user page available only to the logged in user and also general website navigation.
+
+\subsection{Sprint 6 User Validation}
+This was the sprint where I finished off the user validation I added a system to email the user an activation code when registering and also an activation code when trying to reset passwords. All of these help with the security of the site.
+
+\subsection{Sprint 7 Sessions}
+During this Sprint another feature I added in this, was the remember me function. This used session data to remember the user from a particular session and not require the user to log in providing the session has not ended.
+ 
+\subsection{Sprint 8 Top up account}
+During this sprint I wanted to add functionality to the user to be able to top up their account have have credit to use on betting/laying events.
+
+\subsection{Sprint 9 Display Data from Database}
+This was a very important sprint as it was the one where I pulled the data on the events and presented them to the user so that they could then place a bet or lay on the event.
+
+\subsection{Sprint 10 Place a Bet/Lay}
+Now that the data was being displayed, during this sprint I allowed the user to place bets or lays on their selected event. This bet/lay would then be assigned to their account so that the user could see what bets/lays they have placed.
+
+\subsection{Sprint 11 Python Scraper}
+The final sprint was to implement a python scraper that would be used to populate the database for the events. This script would be running on the web server and continually updating the data that was being presented to the user.
 
 \chapter{Technology Review}
 
@@ -112,6 +161,7 @@ Finally in the conclusion I summaries the project against what I set out to do i
 \subsection{Google Cloud Services}
 \subsection{WAMP}
 \subsection{Overleaf}
+\subsection{Cmder}
 
 \chapter{System Design}
 
