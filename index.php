@@ -5,11 +5,28 @@
 
 
 
-  <div class="jumbotron">
-  <?php 
-    display_message();
-  ?>
-    <h1 class="text-center"> Home</h1>
+  <div class="carousel slide" id=myCarousel data-ride="carousel" data-interval = "10000">
+	  	<?php 
+	    display_message();
+	  	?>
+    	<ol class = "carousel-indicators">
+    		<li data-target="#myCarousel data-slide-to"0" class="active"></li>
+    		<li data-target="#myCarousel data-slide-to"1"></li>
+    		<li data-target="#myCarousel data-slide-to"2"></li>
+    	</ol>
+    	<div class="carousel-inner">
+    		<div class="item active">
+    			<img src="https://i.imgur.com/UZcq6lg.jpg" alt="Image 1">
+    		</div>
+    		<div class="item">
+    			<img src="https://i.imgur.com/DJ9BNgN.jpg" alt="Image 2">
+    		</div>
+    		<div class="item">
+    			<img src="https://i.imgur.com/yt1qi7M.jpg" alt="Image 3">
+    		</div>
+    	</div>
+    	<a href="#myCarousel" class="left carousel-control" role="button" data-slide="prev"></a>
+    	<a href="#myCarousel" class="right carousel-control" role="button" data-slide="next"></a>
   </div>
 
   <?php 
@@ -21,7 +38,8 @@
 
 			  		if($result-> num_rows > 0){
 			  			while ($row = $result-> fetch_assoc()) {
-			  				echo '<div class = "row">
+			  				echo '<div>
+			  					<div class = "row">
 			  						<div class= "panel panel-primary">
 			  							<div class= "panel-heading"><h3 	class="panel-title">'.$row['team1'].' Vs '.$row['team2'].'</h3></div>
 
@@ -80,6 +98,8 @@
 																			<p class="lead">
 																				Bet Odds:
 																			  	<input class="form-control" type="number" id="example-number-input" value="'.$row['odds_team1'].'">
+																			  	Amount to Bet/Lay:
+																			  	<input class="form-control" type="number" id="Team1-bet-amount" placeholder="amount" ">
 																			    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 																			</p>
 																		</div>
@@ -90,7 +110,9 @@
 																	    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 																			<p class="lead">
 																				Lay Odds:
-																			  	<input class="form-control" type="number" id="example-number-input">
+																			  	<input class="form-control" type="number" id="example-number-input" value="'.$row['lay_team1'].'">
+																			  	Amount to Bet/Lay:
+																			  	<input class="form-control" type="number" id="Team1-lay-amount" placeholder="amount">
 																			    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 																			</p>
 																		</div>
@@ -115,7 +137,9 @@
 																	    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 																			<p class="lead">
 																				Bet Odds:
-																			  	<input class="form-control" type="number" id="example-number-input" value="'.$row['lay_draw'].'">
+																			  	<input class="form-control" type="number" id="example-number-input" value="'.$row['odds_draw'].'">
+																			  	Amount to Bet/Lay:
+																			  	<input class="form-control" type="number" id="Draw-bet-amount" placeholder="amount">
 																			    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 																			</p>
 																		</div>
@@ -126,7 +150,9 @@
 																	    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 																			<p class="lead">
 																				Lay Odds:
-																			  	<input class="form-control" type="number" id="example-number-input">
+																			  	<input class="form-control" type="number" id="example-number-input" value="'.$row['lay_draw'].'">
+																			  	Amount to Bet/Lay:
+																			  	<input class="form-control" type="number" id="Draw-lay-amount" placeholder="amount">
 																			    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 																			</p>
 																		</div>
@@ -152,6 +178,8 @@
 																			<p class="lead">
 																				Bet Odds:
 																			  	<input class="form-control" type="number" id="example-number-input" value="'.$row['odds_team2'].'">
+																			  	Amount to Bet/Lay:
+																			  	<input class="form-control" type="number" id="Team2-bet-amount" placeholder="amount">
 																			    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 																			</p>
 																		</div>
@@ -162,7 +190,9 @@
 																	    <div class="jumbotron" style = "padding: 5px 5px 5px;">
 																			<p class="lead">
 																				Lay Odds:
-																			  	<input class="form-control" type="number" id="example-number-input">
+																			  	<input class="form-control" type="number" id="example-number-input value="'.$row['lay_team2'].'"">
+																			  	Amount to Bet/Lay:
+																			  	<input class="form-control" type="number" id="Team2-lay-amount" placeholder="amount">
 																			    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
 																			</p>
 																		</div>
@@ -180,6 +210,7 @@
 												  </div>
 												</div>
 	       								</div>
+       								</div>
        								</div>
        								</div>';
        							
