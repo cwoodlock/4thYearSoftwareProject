@@ -4,7 +4,7 @@
 
 
 
-
+<div>
   <div class="carousel slide" id=myCarousel data-ride="carousel" data-interval = "10000">
 	  	<?php 
 	    display_message();
@@ -16,19 +16,20 @@
     	</ol>
     	<div class="carousel-inner">
     		<div class="item active">
-    			<img src="https://i.imgur.com/UZcq6lg.jpg" alt="Image 1">
+    			<img src="https://i.imgur.com/NokE99n.jpg" alt="Image 1">
     		</div>
     		<div class="item">
-    			<img src="https://i.imgur.com/DJ9BNgN.jpg" alt="Image 2">
+    			<img src="https://i.imgur.com/i2Wvh98.jpg" alt="Image 2">
     		</div>
     		<div class="item">
-    			<img src="https://i.imgur.com/yt1qi7M.jpg" alt="Image 3">
+    			<img src="https://i.imgur.com/mBFIL1w.jpg" alt="Image 3">
     		</div>
     	</div>
     	<a href="#myCarousel" class="left carousel-control" role="button" data-slide="prev"></a>
     	<a href="#myCarousel" class="right carousel-control" role="button" data-slide="next"></a>
   </div>
 
+  <div>
   <?php 
   	if(logged_in()){
 			  		$sql = "SELECT contestID, team1, team2, odds_team1, odds_team2, lay_team1, lay_team2, odds_draw, lay_draw FROM contest";
@@ -40,7 +41,7 @@
 			  			while ($row = $result-> fetch_assoc()) {
 			  				echo '<div>
 			  					<div class = "row">
-			  						<div class= "panel panel-primary">
+			  						<div class= "panel panel-success">
 			  							<div class= "panel-heading"><h3 	class="panel-title">'.$row['team1'].' Vs '.$row['team2'].'</h3></div>
 
 				  						<div class= "body-panel">
@@ -65,7 +66,7 @@
 			       								
 
 		       								</table>
-		       								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+		       								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Place Bet/Lay</button>
 
 												<!-- Modal -->
 												<div id="myModal" class="modal fade" role="dialog">
@@ -218,7 +219,8 @@
 			  			}
 			  		}
 			  	?>
-
+	</div>
+</div>
 
 
 <?php include("includes/footer.php") ?>

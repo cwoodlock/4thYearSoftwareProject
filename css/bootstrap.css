@@ -5779,6 +5779,14 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
+
+}
+
+.modal-content {
+  background-color: #0480be;
+}
+.modal-body {
+  background-color: #fff;
 }
 .modal-footer {
   padding: 15px;
