@@ -317,6 +317,7 @@ function login_user($email, $password, $remember){ //Function to log the user in
 
 			//Save email in the session
 			$_SESSION['email'] = $email;
+			
 
 			return true;
 		} else {
@@ -499,12 +500,43 @@ function getOddsDraw(){
 }
 
 function displayCredit(){
-	$sql = "SELECT * FROM users";
-	$result = query($sql);
+	//$sql = "SELECT * FROM users WHERE id = '".$_GET['id']."'";
+	//$result = query($sql);
 
+	//confirm($result);
+	//$row = fetch_array($result);
+	//var_dump($result);
+	//$email = $_SESSION['email'];
+	//echo $email;
+	if(isset($_SESSION['id'])){
+	//get sesssion id for access to tables pk.
+		$id = $_SESSION['id'];
+		$query = "SELECT credit FROM `users` WHERE id = '$id';";
+		$result = query($sql);
+		$row = fetch_array($result);
+		$amount = $row['credit'];
+		echo $amount;
+	}
+}
+
+function validateTopUp(){
+	if($_SERVER['REQUEST_METHOD'] = "POST"){
+		$amount = clean($_POST['amount']);
+		if(topUp($amount)){
+			echo "Topped up";
+		}
+	}
+	echo "Didn't enter if";
+
+}
+
+function topUp($credit){
+	$sql = "INSERT INTO users(credit)";
+	$sql.= "VALUES('$credit')";
+	$result = query($sql);
 	confirm($result);
-	$row = fetch_array($result);
-	echo $row['credit'];
+
+	echo "Topped up";
 }
 
 

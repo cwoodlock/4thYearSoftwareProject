@@ -2,32 +2,49 @@
 
   <?php include("includes/nav.php") ?>
 
+<div>
   <?php 
-    display_message();
-  ?>
+    $conn = mysqli_connect('localhost', 'root', '', 'login_db');
+    if(isset($_POST['topup-submit'])){
+      $amount = $_POST['amount'];
 
+      $sql = "UPDATE users SET credit= $amount WHERE email = '".escape($_SESSION['email'])."'";
+      if ($conn->query($sql) === TRUE) {
+        redirect("index.php");
+      } else {
+        echo "Error updating record: " . $conn->error;
+      }
+
+      $conn->close();
+    }
+  ?>
+</div>             
   <div class="container">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" action="credit.php" method="post">
     <fieldset>
       <legend>Payment</legend>
+
       <div class="form-group">
         <label class="col-sm-3 control-label" for="amount">Amount</label>
         <div class="col-sm-9">
           <input type="number" min="10" max="1000" class="form-control" name="amount" id="amount" placeholder="Amount">
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-3 control-label" for="card-number">Card Number</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
         <div class="col-sm-9">
@@ -67,17 +84,20 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
         </div>
       </div>
+
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <button type="button" class="btn btn-success">Add to account</button>
+          <input type="submit" name="topup-submit" id="topup-submit" tabindex="4" class="form-control btn btn-success" value="Topup Now">
         </div>
       </div>
+
     </fieldset>
   </form>
 </div>

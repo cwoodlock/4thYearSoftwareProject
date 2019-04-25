@@ -28,6 +28,11 @@
     	<a href="#myCarousel" class="left carousel-control" role="button" data-slide="prev"></a>
     	<a href="#myCarousel" class="right carousel-control" role="button" data-slide="next"></a>
   </div>
+  <?php if(!logged_in()){
+  	echo 	'<div class="jumbotron">
+    			<h1 class="text-center">Log in to see events!</h1>
+  			</div>';
+  }?>
 
   <div>
   <?php 
