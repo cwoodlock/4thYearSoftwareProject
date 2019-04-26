@@ -142,30 +142,60 @@ In this section, I will cover the overall design and architecture of the applica
 The data tier represents the overall stored data and gives the ability to store, access, update and delete certain data. For my application I have only one database. This database is used to store user information, events and betting/laying information.
 
 \subsection{MySQL}
-I chose MySQL to handle all of my database needs as I have used it before and I think it works very easily with php. There are some issue with using MySQL such as sql-injection but I have made some simple functions to mitigate this in my application. I also 
+I chose MySQL to handle all of my database needs as I have used it before and I think it works very easily with php. There are some issue with using MySQL such as sql-injection but I have made some simple functions to mitigate this in my application. In this database I am storing table which will contain all the user, event and placed bets data. During the making of the application these tables and the structure of the database changed many times using a MySQL database with phpMyAdmin made it very easy to change and rearrange the database when needed.
+
+As of writing this dissertation I do not have it implemented but the original plan was to get a working web scraper in python and scrape data into a database. Scraping data to a sql file isn't too challenging and this was another reason that I chose to use a MySQL database. Overall it fulfilled my needs and the needs of the application. 
 
 \section{Logic Tier}
 \subsection{Php}
+PHP is a general-purpose programming language originally designed for web development in 1994 by Rasmus Lerdorf~\cite{php} . There are a few reasons I chose to use PHP in my project over more modern and appealing node js and go, one of these reasons was we covered javascript and go on this course in some modules and I wanted to show my ability to learn something different that we havn't been though on this course. Another reason being is that I had some experience with PHP before on a a previous project I did and I enjoyed PHP development. So with these in mind I thought it suited what I wanted to achieve in this application.
+
 \subsection{Python}
+Python is a programming language that is very interesting and very powerful. Having had some experience with Python throughout the course I wanted to incorporate it somehow into my project. The plan was to use the many API's available within python to scrape data from a website then use it to create a sql database of information that would be continually updated. As I have mentioned before I have not implemented this into the project in the time of writing this but I hope to have it implemented in the live project, available on GitHub.
 
 
 \section{Presentation Tier}
 \subsection{HTML}
-\subsection{Ajax}
+HTML5 or Hypertext Markup Language is a standard markup language for creating web pages and web applications. Using it in conjunction with PHP was an integral part of my project. Using it allowed me to prototype pages quickly to check interactions and functions I had written in PHP. Once the page demonstrated that it was functioning correctly it was very simple to implement Bootstrap into the pages to make them appear more aesthetically pleasing.
 
-\section{Additional Languages}
+\subsection{jQuery}
+jQuery is a javascript library. Using this allowed me to add animations to certain interactions. Combined with the styling from Bootstrap some of this animations made the functionality of the web application not only interactive but also aesthetically appealing.
+
+\section{Additional}
 \subsection{CSS}
+I used CSS or Cascading Style Sheets in a number of places in this project. CSS allows the user to style their web page from the standard HTML page. This adds uniqueness to the application and also appeals to the eye. The main place I used this was in editing the existing Bootstrap.css file that is provided when using Bootstrap. I edited it to provide a custom Bootstrap theme that would be unique to my web application.
+
 \subsection{Bootstrap}
-\subsection{JavaScript}
+There are many reasons to use Bootstrap and having used it before it was an easy decision for me ti include it in my project. Bootstrap is a framework for HTML, CSS and JS for responsive development.  One of the main reasons I decided on using it is that it saves time when you are designing your web pages. It is very easy to use templates and classes and simply plug them into your application and in most cases this will work almost immediately. Another reason I decided to used Bootstrap was that it is very easy to customise. Making this themes unique and personal to me is very easy to do and this was again another factor into why I chose to use Bootstrap. The is also extensive documentation that comes with Bootstrap, providing live examples and all the various options available to the user, this makes it very easy to decide on what you want to implement into your web application and then do it. 
+
 \subsection{LaTeX}
+LaTex is a typing system that is used throughout industries. It works on a scripting programming language. LaTex is not as simple and as user friendly as something such as Microsoft Office or Google docs however it is a much more powerful tool in regards to customisation and referencing in particular. I have used LaTex in previous modules and has since become my regular document writing application. For instance this dissertation is being written in LaTex. It can be quite difficult to understand in the beginning however with some practise and understanding of some of the easier commands you quickly get the hang of it. Another feature from LaTex is the ability to control the layout of the file, using simple commands a user can change the appearance of a file very easily.
 
 \section{Technologies Used}
 \subsection{Sublime Text}
+As I was developing the majority of my project in PHP I did not require a large IDE such as Microsoft Visual Studio, instead I could use a simple light weight editor. I searched for some alternatives and found Sublime Text was the application that suited my goals best. It allowed for easy project management, readable colour scheme for php and also git integration that allowed for quick and easy commits to GitHub. Overall I have no complaints about Sublime Text and it accomodated everything that I asked for it in regards to the web application that I made. 
+
+\subsection{phpMyAdmin}
+phpMyAdmin was used to manage the databases I was using throughout the development of the project. Having used it before it was very easy to view and manage databases. The UI may be slightly confusing to users who are not familiar with the layout however it doesn't take long to get used to it and navigate the application with ease.
+
 \subsection{GitHub}
+GitHub is a hosting service and it allows users to hose, shar and collaborate on projects together. It is often used in open source projects. Projects hosted on GitHub are called repositories and it is here that a user can save their projects to, pull down changes that a collaborator has made or push up changes they have made themselves. It is a very powerful tool and one I have become used to using with all of my projects.
+
+Despite not collaboration with anyone on this project Github still proved a valuable tool. One of the reasons it proved a valuable tool was that it allowed me to track my progress and also allowed me to share my progress with my project advisor though out the life cycle of the project. 
+
 \subsection{Google Cloud Services}
+Google Cloud Service provided a a quick and easy solution to host a live version of my web app. Having installed wamp onto the virtual machine it was very simple to configure and display a static version of my web application at a certain ip address.
+
 \subsection{WAMP}
+WAMP stands for Windows Apache MySQL PHP and it is a package used by PHP developers to develop web apps. This was the perfect too for me as it comes installed with Apache server , MySQL database , phpMyAdmin and PHP all things I had identified that I wanted to use in my project. having used it before as part of a module it proved an ideal candidate to include into my project and worked without any issues.
+
 \subsection{Overleaf}
+Overleaf is an online real time editor used for editing LaTex. This means that I did not have to install specialist software in order to edit the LaTex files that I would be using to write my dissertation for this project. I had used it before in another module and was familiar with the user interface.
+
+Overleaf offers a lot of features that was suitable for my project. I could share my pr ogres with my project advisor and it also offers the opportunity to link the files directly to your GitHub repository.
+
 \subsection{Cmder}
+Commander is a console emulator for Windows that allows the user to use some Linux commands on a windows machine. I mainly used this for merge conflicts and other issues I was having with GitHub when pulling or pushing commits. This wasn't too often but it was a tool that I found very useful and worth mentioning in this project.
 
 \chapter{System Design}
 
