@@ -229,7 +229,7 @@
 										$row = fetch_array($result);
 
 
-										$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+										$sql1 = "SELECT users.id, users.email, users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
 										$result1 = query($sql1);
 
 										confirm($result1);
@@ -245,6 +245,7 @@
 										$amount = $_POST['Team1BetAmount'];
 										$betType = '0';
 
+										$currentCredit = $row['credit'];
 
 										//echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
 
@@ -260,6 +261,13 @@
 
 										confirm($result3);
 
+										$newCredit = bcsub($currentCredit, $amount); 
+
+										$sql4 = 	"UPDATE users SET credit='".$newCredit."'";
+										$result4 = query($sql4);
+
+										confirm($result4);
+
 										redirect('admin.php');
 			  			
 			  			
@@ -273,7 +281,7 @@
 										$row = fetch_array($result);
 
 
-										$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+										$sql1 = "SELECT users.id, users.email, users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
 										$result1 = query($sql1);
 
 										confirm($result1);
@@ -288,6 +296,8 @@
 
 										$amount = $_POST['Team1LayAmount'];
 										$betType = '1';
+
+										$currentCredit = $row['credit'];
 
 										//echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
 
@@ -304,6 +314,13 @@
 
 										confirm($result3);
 
+										$newCredit = bcsub($currentCredit, $amount); 
+
+										$sql4 = 	"UPDATE users SET credit='".$newCredit."'";
+										$result4 = query($sql4);
+
+										confirm($result4);
+
 										redirect('admin.php');
 			  			
 			  			
@@ -317,7 +334,7 @@
 										$row = fetch_array($result);
 
 
-										$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+										$sql1 = "SELECT users.id, users.email, users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
 										$result1 = query($sql1);
 
 										confirm($result1);
@@ -333,6 +350,7 @@
 										$amount = $_POST['DrawBetAmount'];
 										$betType = '0';
 
+										$currentCredit = $row['credit'];
 										//echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
 
 										$sql3 = 	"INSERT INTO memberBets 
@@ -347,6 +365,13 @@
 
 										confirm($result3);
 
+										$newCredit = bcsub($currentCredit, $amount); 
+
+										$sql4 = 	"UPDATE users SET credit='".$newCredit."'";
+										$result4 = query($sql4);
+
+										confirm($result4);
+
 										redirect('admin.php');
 			  			
 			  			
@@ -360,7 +385,7 @@
 										$row = fetch_array($result);
 
 
-										$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+										$sql1 = "SELECT users.id, users.email, users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
 										$result1 = query($sql1);
 
 										confirm($result1);
@@ -375,7 +400,7 @@
 
 										$amount = $_POST['DrawLayAmount'];
 										$betType = '1';
-
+										$currentCredit = $row['credit'];
 										//echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
 
 										$sql3 = 	"INSERT INTO memberBets 
@@ -390,6 +415,13 @@
 
 										confirm($result3);
 
+										$newCredit = bcsub($currentCredit, $amount); 
+
+										$sql4 = 	"UPDATE users SET credit='".$newCredit."'";
+										$result4 = query($sql4);
+
+										confirm($result4);
+
 										redirect('admin.php');
 			  			
 			  			
@@ -403,7 +435,7 @@
 										$row = fetch_array($result);
 
 
-										$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+										$sql1 = "SELECT users.id, users.email, users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
 										$result1 = query($sql1);
 
 										confirm($result1);
@@ -418,7 +450,7 @@
 
 										$amount = $_POST['Team2BetAmount'];
 										$betType = '0';
-
+										$currentCredit = $row['credit'];
 
 										//echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
 
@@ -434,6 +466,13 @@
 
 										confirm($result3);
 
+										$newCredit = bcsub($currentCredit, $amount); 
+
+										$sql4 = 	"UPDATE users SET credit='".$newCredit."'";
+										$result4 = query($sql4);
+
+										confirm($result4);
+
 										redirect('admin.php');
 			  			
 			  			
@@ -447,7 +486,7 @@
 										$row = fetch_array($result);
 
 
-										$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+										$sql1 = "SELECT users.id, users.email, users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
 										$result1 = query($sql1);
 
 										confirm($result1);
@@ -462,7 +501,7 @@
 
 										$amount = $_POST['Team1LayAmount'];
 										$betType = '1';
-
+										$currentCredit = $row['credit'];
 										//echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
 
 										$sql3 = 	"INSERT INTO memberBets 
@@ -477,6 +516,13 @@
 										$result3 = query($sql3);
 
 										confirm($result3);
+
+										$newCred = bcsub($currentCredit, $amount); 
+
+										$sql4 = 	"UPDATE users SET credit='".$newCredit."'";
+										$result4 = query($sql4);
+
+										confirm($result4);
 
 										redirect('admin.php');
 			  			

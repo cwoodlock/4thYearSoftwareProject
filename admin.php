@@ -1,7 +1,9 @@
 <?php include("includes/header.php") ?>
 
   <?php include("includes/nav.php") ?>
-
+  	<div class="jumbotron">
+    			<h1 class="text-center">Your Bets</h1>
+  	</div>
 
 	<div class = "panel panel-success">
 		<h4 class="text-center">
