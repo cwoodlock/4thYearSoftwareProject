@@ -506,38 +506,74 @@ function displayCredit(){
 	//confirm($result);
 	//$row = fetch_array($result);
 	//var_dump($result);
-	//$email = $_SESSION['email'];
+	//$email = $_SESSION['id'];
 	//echo $email;
-	if(isset($_SESSION['id'])){
+	//if(isset($_SESSION['id'])){
 	//get sesssion id for access to tables pk.
-		$id = $_SESSION['id'];
-		$query = "SELECT credit FROM `users` WHERE id = '$id';";
-		$result = query($sql);
-		$row = fetch_array($result);
-		$amount = $row['credit'];
-		echo $amount;
-	}
+		//$id = $_SESSION['id'];
+		//$query = "SELECT credit FROM `users` WHERE email = '".escape($_SESSION['email'])."'";
+		//$result = query($sql);
+		//$row = fetch_array($result);
+		//amount = $row['credit'];
+		//echo $amount;
+	//}
 }
 
-function validateTopUp(){
-	if($_SERVER['REQUEST_METHOD'] = "POST"){
-		$amount = clean($_POST['amount']);
-		if(topUp($amount)){
-			echo "Topped up";
-		}
-	}
-	echo "Didn't enter if";
+function topUp(){
+	$conn = mysqli_connect('localhost', 'root', '', 'login_db');
+    if(isset($_POST['topup-submit'])){
+      $amount = $_POST['amount'];
 
+      $sql = "UPDATE users SET credit= $amount WHERE email = '".escape($_SESSION['email'])."'";
+      if ($conn->query($sql) === TRUE) {
+        redirect("index.php");
+      } else {
+        echo "Error updating record: " . $conn->error;
+      }
+
+      $conn->close();
+  }
 }
 
-function topUp($credit){
-	$sql = "INSERT INTO users(credit)";
-	$sql.= "VALUES('$credit')";
+function placeBet(){
+	$sql = "SELECT contest.contestID, contest.team1, contest.odds_team1 FROM contest";
 	$result = query($sql);
-	confirm($result);
 
-	echo "Topped up";
+	confirm($result);
+	$row = fetch_array($result);
+
+
+	$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+	$result1 = query($sql1);
+
+	confirm($result1);
+	$row1 = fetch_array($result1);
+
+	$contestID 	= $row['contestID'];
+	$team1 		= $row['team1'];
+	$odds_team1 = $row['odds_team1'];
+
+	$userID 	= $row1['id'];
+	$email 		= $row1['email'];
+
+	$amount = $row['odds_team1'];
+
+	echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
+
+	$sql3 = 	"INSERT INTO memberBets 
+		    	SET contestID= '".$contestID."',
+		      	usersID= '".$userID."',
+		      	betName= '".$team1."',
+		      	betAmount= '".$amount."',
+		      	betOdds= '".$odds_team1."'		    
+		    ";
+	$result3 = query($sql3);
+
+	confirm($result3);
+
+	echo 'Success';
 }
+
 
 
 

@@ -2,121 +2,60 @@
 <?php include("includes/nav.php") ?>
 
  
-	<div class = "panel panel-default" style = "padding: 0px 00px 10px;">
-	   <div class = "panel-heading">
-	      <h3 class = "panel-title">
-	         <?php getTeam1(); ?> vs <?php getTeam2(); ?>
-	      </h3>
-	   </div>
-	   
-	   <div class = "panel-body" >
-	   	<div>
-	      	<?php getTeam1(); ?>
-		      	<p>
-				  	<a class="btn btn-primary" data-toggle="collapse" href="#team1bet" role="button" aria-expanded="false" aria-controls="team1bet">
-				    <?php getOddsTeam1(); ?>
-				  	</a>
+<div class="jumbotron">
+	<h1><?php 
+			if(isset($_POST['placeBetTeam1'])){
+				$sql = "SELECT contest.contestID, contest.team1, contest.odds_team1 FROM contest";
+				$result = query($sql);
 
-				  	<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#team1lay" aria-expanded="false" aria-controls="team1lay">
-				    Team 1 Lay
-				  	</button>
-				</p>
-				<div class="collapse" id="team1bet">
-				  <div class="card card-body">
-				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
-						<p class="lead">
-							Bet Odds:
-						  	<input class="form-control" type="number" id="example-number-input" value="<?php getOddsTeam1(); ?>">
-						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
-						</p>
-					</div>
-				  </div>
-				</div>
-			<div class="collapse" id="team1lay">
-				<div class="card card-body">
-				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
-						<p class="lead">
-							Lay Odds:
-						  	<input class="form-control" type="number" id="example-number-input">
-						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+				confirm($result);
+				$row = fetch_array($result);
 
 
-	    <div>
-	      	Draw
-		      	<p>
-				  	<a class="btn btn-primary" data-toggle="collapse" href="#drawbet" role="button" aria-expanded="false" aria-controls="drawbet">
-				    <?php getOddsDraw(); ?>
-				  	</a>
+				$sql1 = "SELECT users.id, users.email FROM users WHERE email = '".escape($_SESSION['email'])."'";
+				$result1 = query($sql1);
 
-				  	<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#drawlay" aria-expanded="false" aria-controls="drawlay">
-				    Draw Lay
-				  	</button>
-				</p>
-				<div class="collapse" id="drawbet">
-				  <div class="card card-body">
-				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
-						<p class="lead">
-							Bet Odds:
-						  	<input class="form-control" type="number" id="example-number-input" value="<?php getOddsDraw(); ?>">
-						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
-						</p>
-					</div>
-				  </div>
-				</div>
-			<div class="collapse" id="drawlay">
-				<div class="card card-body">
-				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
-						<p class="lead">
-							Lay Odds:
-						  	<input class="form-control" type="number" id="example-number-input">
-						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>	
+				confirm($result1);
+				$row1 = fetch_array($result1);
 
+				$contestID 	= $row['contestID'];
+				$team1 		= $row['team1'];
+				$odds_team1 = $row['odds_team1'];
 
-	    <div>
-	      	<?php getTeam2(); ?>
-		      	<p>
-				  	<a class="btn btn-primary" data-toggle="collapse" href="#team2bet" role="button" aria-expanded="false" aria-controls="team2bet">
-				    <?php getOddsTeam2(); ?>
-				  	</a>
+				$userID 	= $row1['id'];
+				$email 		= $row1['email'];
 
-				  	<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#team2lay" aria-expanded="false" aria-controls="team2lay">
-				    Team 2 Lay
-				  	</button>
-				</p>
-				<div class="collapse" id="team2bet">
-				  <div class="card card-body">
-				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
-						<p class="lead">
-							Bet Odds:
-						  	<input class="form-control" type="number" id="example-number-input" value="<?php getOddsTeam2(); ?>">
-						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
-						</p>
-					</div>
-				  </div>
-				</div>
-			<div class="collapse" id="team2lay">
-				<div class="card card-body">
-				    <div class="jumbotron" style = "padding: 5px 5px 5px;">
-						<p class="lead">
-							Lay Odds:
-						  	<input class="form-control" type="number" id="example-number-input">
-						    <a class="btn btn-success btn-lg" href="#" role="button">Place Bet</a>
-						</p>
-					</div>
+				$amount = $_POST['Team1BetAmount'];
+
+				echo $contestID, ' ' , $team1, ' ' , $odds_team1, ' ' , $userID, ' ' , $email;
+
+				$sql3 = 	"INSERT INTO memberBets 
+					    	SET contestID= '".$contestID."',
+					      	usersID= '".$userID."',
+					      	betName= '".$team1."',
+					      	betAmount= '".$amount."',
+					      	betOdds= '".$odds_team1."'		    
+					    ";
+				$result3 = query($sql3);
+
+				confirm($result3);
+
+				echo 'Success';
+			}
+		?>
+</div>
+<div>
+	<form action="place_bet.php" method="post">
+		<div class="container">
+			<div class = "row">
+				<div class="col-sm-3">
+					<h1>Test</h1>
+					Amount to Bet/Lay:
+					<input class="form-control" type="number" name="Team1BetAmount" placeholder="amount" ">
+					<input class="btn btn-success" type="submit" name="placeBetTeam1" value="Place Bet">
 				</div>
 			</div>
 		</div>
-	      
-	   </div>
-	</div>
+	</form>
+</div>
 <?php include("includes/footer.php") ?>

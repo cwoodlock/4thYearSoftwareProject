@@ -20,7 +20,16 @@
             <?php if(logged_in()):?>
               <li class="active"><a href="index.php">Home</a></li>
               <li><a href="admin.php">Admin</a></li>
-              <li><a>Credit: <?php displayCredit(); ?></a></li>
+              <li><a>Credit: <?php
+                            $sql = "SELECT users.credit FROM users WHERE email = '".escape($_SESSION['email'])."'";
+                            $result = query($sql);
+
+                            confirm($result);
+                            $row = fetch_array($result);
+                            $contestID  = $row['credit'];
+                            echo $contestID;
+
+                             ?></a></li>
               <li><a href="credit.php">Top Up</a></li>
               <li><a href="logout.php">Logout</a></li>
 

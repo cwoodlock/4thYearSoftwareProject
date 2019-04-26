@@ -4,19 +4,7 @@
 
 <div>
   <?php 
-    $conn = mysqli_connect('localhost', 'root', '', 'login_db');
-    if(isset($_POST['topup-submit'])){
-      $amount = $_POST['amount'];
-
-      $sql = "UPDATE users SET credit= $amount WHERE email = '".escape($_SESSION['email'])."'";
-      if ($conn->query($sql) === TRUE) {
-        redirect("index.php");
-      } else {
-        echo "Error updating record: " . $conn->error;
-      }
-
-      $conn->close();
-    }
+    topUp();
   ?>
 </div>             
   <div class="container">
