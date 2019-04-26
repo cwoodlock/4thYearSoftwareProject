@@ -198,22 +198,126 @@ Overleaf offers a lot of features that was suitable for my project. I could shar
 Commander is a console emulator for Windows that allows the user to use some Linux commands on a windows machine. I mainly used this for merge conflicts and other issues I was having with GitHub when pulling or pushing commits. This wasn't too often but it was a tool that I found very useful and worth mentioning in this project.
 
 \chapter{System Design}
+In this dection, I will be going over the overall design and architecture of the application. I will go though some code snippets that I will use as a visual aid to help you get a better understanding of what is going on in the application. I have broken down this section into 3 parts, the data tier, logic tier and the presentation tier. 
 
 \section{Data Tier}
+The data tier represents the overall stored data in the application and gives the user the ability to store, read, update and delete the data contained within. I have a single database that is used to store the users, the events and also the bet information. The figure below shows the structure of the database.
+
+\includegraphics[width=6cm, height=6cm]{img/DatabaseFinal.png}
+
+
 \subsection{MySQL}
+I chose MySQL to handle off the database requirements of the application as I was familiar with it and there are many resources online. I wanted to create a log in system that allowed a user to register, log in if they already have an account, account verification, forgotten password functionality and remember me functionality. 
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/Users.png}
+
+In the image above you can see I am storing the password and validation code as hashed values.
+This is achieved in the functions during the registration phase.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/hash.png}
+
+Overall phpMyAdmin in conjunction with the mySQL database I created was very easy to work with and provided all the functionality I wanted to implement.
 
 \section{Logic Tier}
-\subsection{Connection to Data Tiers}
-\subsection{Connecting to Presentation Tier}
-\subsection{Routing and Accessing data}
+The logic tier refers to the logic behind your application. This is where the majority of the data manipulation is done. This can include creation of new data, storing data, updating and deleting data. To handle this logic I decided to use PHP. It was very easy to integrate the database into the php logic. 
+
+The first thing I wanted to establish in the data tier was a solid connection that i could all on each time I wanted to access the database, I also wanted a few key functions that I would use repeatedly throughout the project. Below is an image of these functions which I placed in their own php file called db. This php file would be included in every php file I wrote after this.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/db.png}
+
+Most of these functions are pretty standard and are just ways to access existing functions easier however one I would like to highlight is the escape function. This is used to sanitise the data that is being passed into it this is to help minimise the risk of sql injection which is a common problem with a sql database.
+
+The next thing that I felt was appropriate to implement was the log in system. The logic being this was simple enough as it has been done many times over and so I has able to use these examples as reference for my system. To create the register system there were some functions I thought were important to include was a check to see if the user name exists already in the database and also if the email already exists. Below is the code that I used to complete these checks.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/emain-user-check.png}
+
+Next I had to implement these checks into a validation system. This was my second layer of validation as there was some validation check already happening with HTML5.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/validationRegister.png}
+
+Providing the user had passed all these checks the information would then be passed into the registeruser function where the users information would be stored in the database and a validation code would be generated which would then be sent out to the user via email. It is worth noting that this function does not work on localhost unless you configure the localhost to do so.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/register.png}
+
+At this point the account is created however the account must be activated in order to use it. If an email is sent out the user can click the link and they will be sent to an activation page on the site where they can enter the validation code that was also sent out in the email. Below is the code that is used to activate the account of the user.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/activate.png}
+
+Now the user has a fully activated account and can now log in. Much like the register system the log in system must have similar validation. This is to ensure the correct data is being entered and no input fields are being left blank or contain invalid data.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/validateLogin.png}
+
+Again once the user passes the validation their information is passed into a log in function to log the user in. In this function the hashed password is retrieved from the database and compared to the hashed version of the entered password. If there is a match I the application then starts a session and saves the logged in email into the session. This will be used at a later time when we discuss the remember me functionality.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/loginUser.png}
+
+An important part of the web application is knowing if the user is logged in. This allows the application to allow logged in users access information and functionality that is otherwise unavailable to users who are not logged in. I use a simple function to check this.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/loggedIn.png}
+
+The final piece of the log in functionality that I wanted to get working effectively was the recover password functionality. This was a similar function to the one I used when activating a users account. Again in this function there is an email sent out containing the validation code to recover the password.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/recover.png}
+
+Another function that I would like to highlight is the function used to place a bet. In this function I retrieve data from various tables and pass the relevant data into the table which will store the information on the stored bet. I use similar functions for when the user is laying a bet. 
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/placeBet.png}
+
+
 
 
 \section{Presentation Tier}
+In the presentation tier I will look at the website structure, individual pages and also deployment and hosting on a virtual machine. I will talk about design choices I made and the overall design of the application. 
+
 \subsection{Website Structure}
+In this section I will talk about the structure of my project. Below is an image of the project as it appears in Sublime Text.
+
+\includegraphics{img/structure.png}
+
+In this image you can see that all of the main pages that relate directly to the website structure are in the root. From here you can then see in the folder js. In this folder you can find all the javascript related files. In here we have the jquery.js and bootstrap.js files. Above this we have the includes folder. In this folder I have placed all the php files that will be used as includes on each of the main files. An example of this is the header and footer files are in this folder as well as the nav bar file. 
+
+Above this are images that are being used in this dissertation for example. All images on the web application are hosted online. Above the images folder we have the functions folder. Contained within this folder we have init.php which contains a function call for obstart and sessionstart which are used in the application and must be called when the application start and it also includes db.php and function.php which are two files that are also contained within the functions folder. db.php contains all of the database connection and querying functions while functions.php is a file full of all the various functions that I use throughout the application.
+
+Above that we have the database folder in her contains a copy of the sql file used to create the database and finally we have the css folder which contains all the css files such as bootstrap.css and style.css, style.css overwrites some of bootstrap.css to make a custom theme.
+
 \subsection{Pages}
-\subsection{Deployment and Hosting}
+The first picture is of what the user see's when they first visit the site, they are encouraged to sign up in order to unlock the full potential of the site.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/home.png}
+
+From here the user is then greeted with the log in menu if the press the login/register button on the navigation menu.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/login.png}
+
+On the other tab in this window is the register form it is similar to the login page.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/register.png}
+
+You can also see the forgotten password page from here by clicking the recover password link.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/recover.png}
+
+Once the user is logged in it directs the user to their profile page which will contain the history of the bets they have placed.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/admin.png}
+
+From here you can navigate back to the home page where you will now notice there are bets being displayed which you can place a bet on.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/homeLoggedIn.png}
+
+The two images below show the process of placing a bet.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/placeBet.png}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/placingBet.png}
+
+The final page on the site is the top up page which exists to top up the user account when they do not have enough funds.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/screenshots/topup.png}
 
 \chapter{System Evaluation}
+In this chapter I will evaluate the robustness of the system, the testing and finally the limitations of the application.
+
 \section{Robustness}
 
 \section{Testing}

@@ -81,9 +81,7 @@
 									                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
 									                    <h4 class="modal-title">'.$row['team1'].' Vs. '.$row['team2'].'</h4>
-									                    <div>
-									                      <h1>HELLO</h1>
-									                    </div>
+									                
 									                  </div>
 
 									                  <div class="modal-body">
@@ -305,7 +303,7 @@
 
 										confirm($result3);
 
-										//redirect('admin.php');
+										redirect('admin.php');
 			  			
 			  			
 							}
@@ -348,7 +346,7 @@
 
 										confirm($result3);
 
-										//redirect('admin.php');
+										redirect('admin.php');
 			  			
 			  			
 							}
@@ -391,7 +389,7 @@
 
 										confirm($result3);
 
-										//redirect('admin.php');
+										redirect('admin.php');
 			  			
 			  			
 							}
@@ -435,7 +433,7 @@
 
 										confirm($result3);
 
-										//redirect('admin.php');
+										redirect('admin.php');
 			  			
 			  			
 							}
@@ -479,7 +477,7 @@
 
 										confirm($result3);
 
-										//redirect('admin.php');
+										redirect('admin.php');
 			  			
 			  			
 							}

@@ -86,9 +86,7 @@ function username_exists($username){ //checks if username was used before
 }
 
 function validate_user_registration(){ //Function will validate the user
-
 	$errors = [];
-
 	$min = 3;
 	$max = 20;
 

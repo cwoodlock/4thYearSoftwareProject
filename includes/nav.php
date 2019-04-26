@@ -13,7 +13,7 @@
           <ul class="nav navbar-nav">
             <?php if(!logged_in()):?>
               <li class="active"><a href="index.php">Home</a></li>
-              <li class="active"><a href="login.php">Login</a></li>
+              <li class="active"><a href="login.php">Login/Register</a></li>
 
             <?php endif; ?>
 
