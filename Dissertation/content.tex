@@ -67,6 +67,7 @@ In the technology review chapter I review the various technologies that I used i
 
 \subsection{System Design}
 In this chapter I give an explanation of the overall architecture of the betting exchange. I explain why I decided to do certain things and how I implemented those decisions into the project.
+
 \subsection{System Evaluation}
 In this chapter I evaluate the system in regards to robustness, testing, test results and limitations. 
 
@@ -136,7 +137,7 @@ Now that the data was being displayed, during this sprint I allowed the user to 
 The final sprint was to implement a python scraper that would be used to populate the database for the events. This script would be running on the web server and continually updating the data that was being presented to the user.
 
 \chapter{Technology Review}
-In this section, I will cover the overall design and architecture of the application. I will do this through using code snippets to help to understand the design. The technology review chapter will be broken up into three sub sections which will be the data tier, logic tier and presentation tier. An aditional subsection will be used for other technology I used that may not fit into the 3 tier structure.
+In this section, I will cover the overall design and architecture of the application. I will do this through using code snippets to help to understand the design. The technology review chapter will be broken up into three sub sections which will be the data tier, logic tier and presentation tier. An additional subsection will be used for other technology I used that may not fit into the 3 tier structure.
 
 \section{Data Tier}
 The data tier represents the overall stored data and gives the ability to store, access, update and delete certain data. For my application I have only one database. This database is used to store user information, events and betting/laying information.
@@ -151,7 +152,7 @@ As of writing this dissertation I do not have it implemented but the original pl
 PHP is a general-purpose programming language originally designed for web development in 1994 by Rasmus Lerdorf~\cite{php} . There are a few reasons I chose to use PHP in my project over more modern and appealing node js and go, one of these reasons was we covered javascript and go on this course in some modules and I wanted to show my ability to learn something different that we havn't been though on this course. Another reason being is that I had some experience with PHP before on a a previous project I did and I enjoyed PHP development. So with these in mind I thought it suited what I wanted to achieve in this application.
 
 \subsection{Python}
-Python is a programming language that is very interesting and very powerful. Having had some experience with Python throughout the course I wanted to incorporate it somehow into my project. The plan was to use the many API's available within python to scrape data from a website then use it to create a sql database of information that would be continually updated. As I have mentioned before I have not implemented this into the project in the time of writing this but I hope to have it implemented in the live project, available on GitHub.
+Python is a programming language that is very interesting and very powerful. Having had some experience with Python throughout the course I wanted to incorporate it somehow into my project. The plan was to use the many APIs available within python to scrape data from a website then use it to create a sql database of information that would be continually updated. As I have mentioned before I have not implemented this into the project in the time of writing this but I hope to have it implemented in the live project, available on GitHub.
 
 
 \section{Presentation Tier}
@@ -173,13 +174,13 @@ LaTex is a typing system that is used throughout industries. It works on a scrip
 
 \section{Technologies Used}
 \subsection{Sublime Text}
-As I was developing the majority of my project in PHP I did not require a large IDE such as Microsoft Visual Studio, instead I could use a simple light weight editor. I searched for some alternatives and found Sublime Text was the application that suited my goals best. It allowed for easy project management, readable colour scheme for php and also git integration that allowed for quick and easy commits to GitHub. Overall I have no complaints about Sublime Text and it accomodated everything that I asked for it in regards to the web application that I made. 
+As I was developing the majority of my project in PHP I did not require a large IDE such as Microsoft Visual Studio, instead I could use a simple light weight editor. I searched for some alternatives and found Sublime Text was the application that suited my goals best. It allowed for easy project management, readable colour scheme for php and also git integration that allowed for quick and easy commits to GitHub. Overall I have no complaints about Sublime Text and it accommodated everything that I asked for it in regards to the web application that I made. 
 
 \subsection{phpMyAdmin}
 phpMyAdmin was used to manage the databases I was using throughout the development of the project. Having used it before it was very easy to view and manage databases. The UI may be slightly confusing to users who are not familiar with the layout however it doesn't take long to get used to it and navigate the application with ease.
 
 \subsection{GitHub}
-GitHub is a hosting service and it allows users to hose, shar and collaborate on projects together. It is often used in open source projects. Projects hosted on GitHub are called repositories and it is here that a user can save their projects to, pull down changes that a collaborator has made or push up changes they have made themselves. It is a very powerful tool and one I have become used to using with all of my projects.
+GitHub is a hosting service and it allows users to  share and collaborate on projects together. It is often used in open source projects. Projects hosted on GitHub are called repositories and it is here that a user can save their projects to, pull down changes that a collaborator has made or push up changes they have made themselves. It is a very powerful tool and one I have become used to using with all of my projects.
 
 Despite not collaboration with anyone on this project Github still proved a valuable tool. One of the reasons it proved a valuable tool was that it allowed me to track my progress and also allowed me to share my progress with my project advisor though out the life cycle of the project. 
 
@@ -198,7 +199,7 @@ Overleaf offers a lot of features that was suitable for my project. I could shar
 Commander is a console emulator for Windows that allows the user to use some Linux commands on a windows machine. I mainly used this for merge conflicts and other issues I was having with GitHub when pulling or pushing commits. This wasn't too often but it was a tool that I found very useful and worth mentioning in this project.
 
 \chapter{System Design}
-In this dection, I will be going over the overall design and architecture of the application. I will go though some code snippets that I will use as a visual aid to help you get a better understanding of what is going on in the application. I have broken down this section into 3 parts, the data tier, logic tier and the presentation tier. 
+In this section, I will be going over the overall design and architecture of the application. I will go though some code snippets that I will use as a visual aid to help you get a better understanding of what is going on in the application. I have broken down this section into 3 parts, the data tier, logic tier and the presentation tier. 
 
 \section{Data Tier}
 The data tier represents the overall stored data in the application and gives the user the ability to store, read, update and delete the data contained within. I have a single database that is used to store the users, the events and also the bet information. The figure below shows the structure of the database.
@@ -221,11 +222,19 @@ Overall phpMyAdmin in conjunction with the mySQL database I created was very eas
 \section{Logic Tier}
 The logic tier refers to the logic behind your application. This is where the majority of the data manipulation is done. This can include creation of new data, storing data, updating and deleting data. To handle this logic I decided to use PHP. It was very easy to integrate the database into the php logic. 
 
-The first thing I wanted to establish in the data tier was a solid connection that i could all on each time I wanted to access the database, I also wanted a few key functions that I would use repeatedly throughout the project. Below is an image of these functions which I placed in their own php file called db. This php file would be included in every php file I wrote after this.
+The first thing I wanted to establish in the data tier was a solid connection that I could all on each time I wanted to access the database, I also wanted a few key functions that I would use repeatedly throughout the project. Below is an image of these functions which I placed in their own php file called db. This php file would be included in every php file I wrote after this.
+
+
 
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/db.png}
 
 Most of these functions are pretty standard and are just ways to access existing functions easier however one I would like to highlight is the escape function. This is used to sanitise the data that is being passed into it this is to help minimise the risk of sql injection which is a common problem with a sql database.
+
+Below are two UML diagrams that I tried to follow in regards to how the site would be used and how I would implement various functions.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/FlowchartPlacingBet.png}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/FlowchartSiteNav.png}
 
 The next thing that I felt was appropriate to implement was the log in system. The logic being this was simple enough as it has been done many times over and so I has able to use these examples as reference for my system. To create the register system there were some functions I thought were important to include was a check to see if the user name exists already in the database and also if the email already exists. Below is the code that I used to complete these checks.
 
@@ -322,12 +331,11 @@ In this chapter I will evaluate the robustness of the system, the testing and fi
 Unfortunately due to the oncoming deadline I have not been able to put the application through any real stress testing. However from regular use I have found no real bugs or errors.
 
 \section{Testing}
-\subsection{Device Testing}
+Through continuous white box testing and regular black box testing I believe the app has reached the expectations I set myself at the very start of the life cycle of this project. In order to complete the white box testing I hosted the site on an Apache server via WAMP and for black box testing via a Google cloud virtual machine.
 
 \section{Limitations}
-\subsection{Service Limitations}
+One of the limitations with this application is that during development I was hosting it locally and could not test out the mail notification system in it's entirety as you had to configure the localhost in a certain way. Another limit of this application is that when it is hosted on the Google cloud virtual machine it is only a static web application and does not represent a fully developed web application.
 
-\section{Results}
 
 \chapter{Conclusion}
 In conclusion I can say that this was most definitely the most difficult project I have attempted in my three years in Galway-Mayo Institute of Technology. The scale and complexity of the project has given me greater insight into working on bigger projects in the future. I had no major problems throughout the life cycle of the project, with time and time management being the biggest issue for myself personally. 
@@ -349,7 +357,7 @@ What I have accomplished:
 \end{itemize}
 
 \section{Future Development}
-There are many avenues one could go in regards to future development within the app. Thoughout the development of the application to this point I have though of many features and possible things to add to the application to improve the experience. 
+There are many avenues one could go in regards to future development within the app. Throughout the development of the application to this point I have though of many features and possible things to add to the application to improve the experience. 
 
 Once such feature might be to implement a versus league where user's can create leagues with their friends and can place bets on opposing sides with a winner take all result.
 
