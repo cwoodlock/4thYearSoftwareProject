@@ -156,6 +156,8 @@ function validate_user_registration(){ //Function will validate the user
 
 			if(register_user($first_name, $last_name, $username, $email, $password)){
 
+				//echo "User Registered";
+
 				set_message("<p class='bg-success text-centre'> Please check your email or spam folder for activation link.</p>");
 
 				//redirect to home page
@@ -183,7 +185,7 @@ function register_user($first_name, $last_name, $username, $email, $password){
 		$password = md5($password); //hash password
 
 		//Hash password to create validtion code
-		$validation_code = md5($username + microtime());
+		$validation_code = md5($username);
 
 		$sql = "INSERT INTO users(first_name, last_name, username, email, password, validation_code, active)";
 		$sql.="VALUES('$first_name','$last_name','$username','$email','$password','$validation_code', 0)"; //append query onto previous
@@ -191,6 +193,8 @@ function register_user($first_name, $last_name, $username, $email, $password){
 		//Confirm the query
 		$result = query($sql);
 		confirm($result);
+
+		
 
 		$subject = "Activate Account";
 		$message = "Please click the link below to activate your account:
