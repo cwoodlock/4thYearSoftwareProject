@@ -34,3 +34,7 @@ This will open the git command prompt in the folder selected.
 
 
 Then in a browser of your choice enter [http://localhost/4thYearSoftwareProject/index.php](http://localhost/4thYearSoftwareProject/index.php)
+
+## Screencast
+
+[![Screencast](https://img.youtube.com/vi/jZGhbmHNFqI/0.jpg)](https://www.youtube.com/watch?v=jZGhbmHNFqI&feature=youtu.be "Screencast")
